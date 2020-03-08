@@ -69,7 +69,8 @@ def final_finder(letters_list):
     else:
         final_letters.append(letters)
     
-    print(possible_words(final_letters))
+    return final_letters
+    # print(possible_words(final_letters))
 
 def possible_words(letters):
     """returns a list of all the possible words in the solution,
@@ -96,19 +97,28 @@ def possible_words(letters):
 
     return final_combo
 
+def all_letters(words, set_of_words):
+    word_list = []
+    letter_answers = ["_ooo_","o_o__", "oo____", "__o_oo" ]
 
+    for i, word in enumerate(words):
+        ans = solver(word, set_of_words)
+        word_list.append((ans, letter_answers[i]))
+    return word_list
 
 def main():
     import sys
     word_set = all_words_set('/usr/share/dict/words')
     args = sys.argv[1:]
-    word_list = []
-    word_tuple = ()
-    letter_answers = ["_ooo_","o_o__", "oo____", "__o_oo" ]
-    for i, arg in enumerate(args):
-        word = solver(arg, word_set)
-        word_list.append((word, letter_answers[i]))
-    final_finder(letter_list(word_list))
+    
+    list_of_letters = all_letters(args, word_set)
+    
+    list_of_letters = letter_list(list_of_letters)
+    groups = final_finder(list_of_letters)
+
+    print(groups)
+
+
 
 if __name__ == "__main__":
     main()
