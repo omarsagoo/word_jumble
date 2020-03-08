@@ -9,7 +9,7 @@ def all_words_set(file):
 
 def solver(anagram, word_set):
     word_list = []
-    for perm in permutations(anagram):
+    for perm in permutations(anagram.lower()):
         if ''.join(perm) in word_set:
             if ''.join(perm) not in word_list:
                 word_list.append(''.join(perm))
