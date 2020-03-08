@@ -1,6 +1,9 @@
 from itertools import permutations
 
 def all_words_set(file):
+    """create a set of all the words in the dictionary.
+    o(n) time complexity, where n is the number of words in the dictionary
+    not the most efficient, but also not the least."""
     dictFile = open(file, 'r')
     wordSet = set()
     for word in dictFile:
@@ -8,6 +11,9 @@ def all_words_set(file):
     return wordSet
 
 def solver(anagram, word_set):
+    """ solves an anagram with all possible words,
+    o(p) where p is the number of permutations that an anagram has.
+    not the most efficient, but also not the least. solves inidividual words quickly."""
     word_list = []
     for perm in permutations(anagram.lower()):
         if ''.join(perm) in word_set:
@@ -16,6 +22,11 @@ def solver(anagram, word_set):
     return word_list
 
 def letter_list(word_list):
+    """returns a list of all the letters that belong in the solution
+    o(n) where n is the length of the word that was created. ussually very small,
+    upper limit is the longest word in the dictionary.
+    This solution is not exponential because It is assumed that This is solving a puzzle of a few words
+    not a huge list of 1 million words"""
     pair_list = []
     letters = []
     letters_list = []
@@ -34,6 +45,8 @@ def letter_list(word_list):
     return letters_list
 
 def final_finder(letters_list):
+    """returns all possible word combinations for the final statement
+                            not completed"""
     letters = []
     final_letters = []
     group2_letters = []
@@ -59,6 +72,13 @@ def final_finder(letters_list):
     print(possible_words(final_letters))
 
 def possible_words(letters):
+    """returns a list of all the possible words in the solution,
+    same time complexity as solver.
+    o(p) where p is the number of permutations a word has.
+    upper limit is the longest word in the dictionary.
+    This solution is not exponential because It is assumed that This is solving a puzzle of a few words
+    not a huge list of 1 million words
+    """
     final = ['OOOOO', 'OOOOO']
     words = []
     final_combo = []
