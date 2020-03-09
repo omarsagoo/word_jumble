@@ -14,16 +14,18 @@ class AnagramTest(unittest.TestCase):
         assert solver("laurr", word_set) == ["urlar", "rural"]
 
     def test_all_letters(self):
-        [(['often'], '_ooo_'), (['urlar', 'rural'], 'o_o__'), (['rebuke'], 'oo____'), (['uproot'], '__o_oo')]
         word_set = all_words_set('/usr/share/dict/words')
         letters = ['tfoen', 'laurr', 'bureek', 'prouot']
+        sol = ['_ooo_', 'o_o__', 'oo____', '__o_oo']
 
-        assert all_letters(letters, word_set) == [(['often'], '_ooo_'), (['urlar', 'rural'], 'o_o__'), (['rebuke'], 'oo____'), (['uproot'], '__o_oo')]
+        assert all_letters(letters, word_set, sol) == [(['often'], '_ooo_'), (['urlar', 'rural'], 'o_o__'), (['rebuke'], 'oo____'), (['uproot'], '__o_oo')]
 
     def test_letter_list(self):
         word_set = all_words_set('/usr/share/dict/words')
         letters = ['tfoen', 'laurr', 'bureek', 'prouot']
-        all_let = all_letters(letters, word_set)
+        sol = ['_ooo_', 'o_o__', 'oo____', '__o_oo']
+
+        all_let = all_letters(letters, word_set, sol)
         assert all_let == [(['often'], '_ooo_'), (['urlar', 'rural'], 'o_o__'), (['rebuke'], 'oo____'), (['uproot'], '__o_oo')]
         list_of_letters_in_answer = letter_list(all_let)
         assert list_of_letters_in_answer == [[['f', 't', 'e']], [['u', 'l'], ['r', 'r']], [['r', 'e']], [['r', 'o', 't']]]
@@ -31,7 +33,9 @@ class AnagramTest(unittest.TestCase):
     def test_all_possible_letters(self):
         word_set = all_words_set('/usr/share/dict/words')
         letters = ['tfoen', 'laurr', 'bureek', 'prouot']
-        all_let = all_letters(letters, word_set)
+        sol = ['_ooo_', 'o_o__', 'oo____', '__o_oo']
+
+        all_let = all_letters(letters, word_set, sol)
         assert all_let == [(['often'], '_ooo_'), (['urlar', 'rural'], 'o_o__'), (['rebuke'], 'oo____'), (['uproot'], '__o_oo')]
         list_of_letters_in_answer = letter_list(all_let)
         assert list_of_letters_in_answer == [[['f', 't', 'e']], [['u', 'l'], ['r', 'r']], [['r', 'e']], [['r', 'o', 't']]]
