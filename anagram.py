@@ -26,7 +26,7 @@ def letter_list(word_list):
     o(n) where n is the length of the word that was created. ussually very small,
     upper limit is the longest word in the dictionary.
     This solution is not exponential because It is assumed that This is solving a puzzle of a few words
-    not a huge list of 1 million words"""
+    not a huge list of 1 million words with the longest word being the longest word in the dictionary."""
     pair_list = []
     letters = []
     letters_list = []
@@ -72,7 +72,7 @@ def final_finder(letters_list):
     return final_letters
     # print(possible_words(final_letters))
 
-def possible_words(letters):
+def possible_words(letters, final):
     """returns a list of all the possible words in the solution,
     same time complexity as solver.
     o(p) where p is the number of permutations a word has.
@@ -80,7 +80,6 @@ def possible_words(letters):
     This solution is not exponential because It is assumed that This is solving a puzzle of a few words
     not a huge list of 1 million words
     """
-    final = ['OOOOO', 'OOOOO']
     words = []
     final_combo = []
     word_set = all_words_set('/usr/share/dict/words')
@@ -97,29 +96,12 @@ def possible_words(letters):
 
     return final_combo
 
-def all_letters(words, set_of_words):
+def all_letters(words, set_of_words, solutions):
     word_list = []
-    letter_answers = ["_ooo_","o_o__", "oo____", "__o_oo" ]
 
     for i, word in enumerate(words):
         ans = solver(word, set_of_words)
-        word_list.append((ans, letter_answers[i]))
+        word_list.append((ans, solutions[i]))
     return word_list
 
-def main():
-    import sys
-    word_set = all_words_set('/usr/share/dict/words')
-    args = sys.argv[1:]
-    
-    list_of_letters = all_letters(args, word_set)
-    
-    list_of_letters = letter_list(list_of_letters)
-    groups = final_finder(list_of_letters)
-
-    print(groups)
-
-
-
-if __name__ == "__main__":
-    main()
 
